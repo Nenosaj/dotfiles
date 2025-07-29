@@ -13,6 +13,8 @@ exec --no-startup-id flameshot
 exec_always --no-startup-id picom
 exec_always --no-startup-id ~/Scripts/resize-brave-dialog.sh
 exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id python ~/.config/autotiling/autotiling/autotiling.py
+
 
 set $refresh_i3status killall -SIGUSR1 i3status
 
