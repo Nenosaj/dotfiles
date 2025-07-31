@@ -12,7 +12,6 @@ exec --no-startup-id nm-applet
 exec --no-startup-id flameshot
 exec --no-startup-id brave
 exec --no-startup-id kitty
-exec --no-startup-id rofi
 exec_always --no-startup-id picom
 exec_always --no-startup-id ~/Scripts/resize-brave-dialog.sh
 exec_always --no-startup-id ~/.config/polybar/launch.sh
