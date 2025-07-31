@@ -162,7 +162,7 @@ for_window [window_role="GtkFileChooserDialog"] floating disable
 
 #gaps
 
-gaps inner 7
+gaps inner 10
 gaps outer 10
 gaps bottom 10
 gaps left 10
