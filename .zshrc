@@ -1,5 +1,7 @@
 alias fetch='fastfetch'
 
+
+
 LIVE_TERMINALS=$(pgrep -u "$USER" -fx "kitty" | wc -l)
 
 if [ "$LIVE_TERMINALS" -eq 1 ]; then
