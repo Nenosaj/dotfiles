@@ -16,6 +16,10 @@ exec_always --no-startup-id picom
 exec_always --no-startup-id ~/Scripts/resize-brave-dialog.sh
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id python ~/.config/autotiling/autotiling/autotiling.py
+#exec_always --no-startup-id ~/dotfiles/scripts/music_workspaces.sh
+exec_always --no-startup-id ~/dotfiles/scripts/music.sh
+
+
 
 set $refresh_i3status killall -SIGUSR1 i3status
 
@@ -99,9 +103,8 @@ set $ws10 "10"
 #assign application to workspaces
 assign [class="kitty"] $ws1
 assign [class="Brave-browser"] $ws2
+assign [class="musicterm"] $ws10
 
-
-exec_always --no-startup-id ~/dotfiles/scripts/music_workspaces.sh
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -162,6 +165,12 @@ bindsym $mod+Shift+d exec --no-startup-id ~/.config/polybar/scripts/powermenu.sh
 
 
 for_window [window_role="GtkFileChooserDialog"] floating disable
+for_window [title="ncmp-browser"] move to workspace $ws10
+for_window [title="yt-search"] move to workspace $ws10
+for_window [title="ncmp-visualizer"] move to workspace $ws10
+
+
+
 
 #gaps
 
