@@ -25,6 +25,8 @@ A curated collection of my personal configuration files for a tiling window mana
 | `scripts/` | Helper scripts and utilities   |
 | `.zshrc`   | Zsh shell config               |
 
+polybar theme -> https://github.com/adi1090x/polybar-themes
+
 ---
 
 ##  Setup Instructions
