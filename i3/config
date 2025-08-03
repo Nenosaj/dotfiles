@@ -9,19 +9,26 @@ exec_always --no-startup-id feh --bg-scale /home/nenosaj/HDD/Pictures/makise.jpg
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
-exec --no-startup-id flameshot
 exec --no-startup-id brave
-exec --no-startup-id kitty
 exec_always --no-startup-id picom
 exec_always --no-startup-id ~/Scripts/resize-brave-dialog.sh
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id python ~/.config/autotiling/autotiling/autotiling.py
-#exec_always --no-startup-id ~/dotfiles/scripts/music_workspaces.sh
-exec_always --no-startup-id ~/dotfiles/scripts/music.sh
+exec --no-startup-id ~/dotfiles/scripts/music.sh
+exec --no-startup-id ~/dotfiles/scripts/filemanager.sh
+exec --no-startup-id ~/dotfiles/scripts/nvim-launcher.sh
+exec --no-startup-id kitty --class "nvim" -e nvim
 
 
 
 set $refresh_i3status killall -SIGUSR1 i3status
+
+
+#for windows
+
+for_window [window_role="GtkFileChooserDialog"] floating disable
+
+
 
 #audio
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -101,10 +108,11 @@ set $ws9 "9"
 set $ws10 "10"
 
 #assign application to workspaces
-assign [class="kitty"] $ws1
 assign [class="Brave-browser"] $ws2
+assign [class="nvim"] $ws3
+assign [class="yazi"] $ws4
+assign [class="obs"] $ws5
 assign [class="musicterm"] $ws10
-
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -159,17 +167,12 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 bindsym $mod+Shift+s exec --no-startup-id flameshot gui
 bindsym $mod+b exec --no-startup-id brave
-bindsym $mod+n exec --no-startup-id thunar
+bindsym $mod+n exec --no-startup-id ~/dotfiles/scripts/filemanager.sh
 bindsym $mod+Shift+f exec --no-startup-id rofi -show drun -theme ~/.config/rofi/launcher.rasi
 bindsym $mod+Shift+d exec --no-startup-id ~/.config/polybar/scripts/powermenu.sh 
-
-
-for_window [window_role="GtkFileChooserDialog"] floating disable
-for_window [title="ncmp-browser"] move to workspace $ws10
-for_window [title="yt-search"] move to workspace $ws10
-for_window [title="ncmp-visualizer"] move to workspace $ws10
-
-
+bindsym $mod+o exec --no-startup-id obs
+bindsym $mod+m exec --no-startup-id ~/dotfiles/scripts/music.sh
+bindsym $mod+Shift+n exec --no-startup-id kitty --class "nvim" -e nvim
 
 
 #gaps

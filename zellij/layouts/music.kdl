@@ -1,0 +1,22 @@
+layout {
+  pane split_direction="vertical" {
+    pane {
+      command "ncmpcpp"
+      args "--screen=browser"
+    }
+
+    pane split_direction="horizontal" {
+      pane {
+        command "zsh"
+        args "-c" "cd ~/dotfiles/scripts && exec zsh"
+      }
+
+      pane {
+        command "ncmpcpp"
+        args "--screen=visualizer"
+      }
+    }
+  }
+}
+
+    
