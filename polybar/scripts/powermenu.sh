@@ -58,12 +58,12 @@ case $chosen in
         fi
         ;;
     $lock)
-		if [[ -f /usr/bin/i3lock ]]; then
-			i3lock
-		elif [[ -f /usr/bin/betterlockscreen ]]; then
-			betterlockscreen -l
-		fi
-        ;;
+	if [[ -x ~/dotfiles/scripts/lock.sh ]]; then
+        ~/dotfiles/scripts/lock.sh
+      else
+            i3lock
+            fi
+          ;;
     $suspend)
 		ans=$(confirm_exit &)
 		if [[ $ans == "yes" || $ans == "YES" || $ans == "y" || $ans == "Y" ]]; then

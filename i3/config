@@ -4,10 +4,13 @@ set $mod Mod4
 #font
 font pango:JetBrainsMono Nerd Font 10
 
+set $refresh_i3status killall -SIGUSR1 i3status
+
 #background essentials
 exec_always --no-startup-id feh --bg-scale /home/nenosaj/HDD/Pictures/makise.jpg
 exec --no-startup-id dex --autostart --environment i3
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec_always --no-startup-id xset +dpms dpms 0 300 300 
+exec_always --no-startup-id xss-lock --transfer-sleep-lock -- ~/dotfiles/scripts/lock.sh
 exec --no-startup-id nm-applet
 exec --no-startup-id brave
 exec_always --no-startup-id picom
@@ -20,15 +23,15 @@ exec --no-startup-id ~/dotfiles/scripts/nvim-launcher.sh
 exec --no-startup-id kitty --class "nvim" -e nvim
 
 
-
-set $refresh_i3status killall -SIGUSR1 i3status
-
-
 #for windows
-
 for_window [window_role="GtkFileChooserDialog"] floating disable
 
+for_window [class="floatkitty"] \
+  floating enable, \
+  resize set 500 300, \
+  move position 35 410
 
+for_window [class=".*"] border pixel 0
 
 #audio
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -36,14 +39,11 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-floating_modifier $mod
-tiling_drag modifier titlebar
-
 #binding
+floating_modifier $mod
+
 bindsym $mod+Return exec kitty
 bindsym $mod+Shift+q kill
-bindsym $mod+d exec --no-startup-id dmenu_run
-
 
 # change focus
 bindsym $mod+j focus left
@@ -79,9 +79,9 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+#bindsym $mod+s layout stacking
+#bindsym $mod+w layout tabbed
+#bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -92,10 +92,55 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
-# focus the child container
-#bindsym $mod+d focus child
+# reload the configuration file
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
-# We use variables to avoid repeating the names in multiple places.
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+#custom bindings
+bindsym $mod+r mode "resize"
+bindsym $mod+Shift+s exec --no-startup-id flameshot gui
+bindsym $mod+b exec --no-startup-id brave
+bindsym $mod+n exec --no-startup-id ~/dotfiles/scripts/filemanager.sh
+bindsym $mod+Shift+f exec --no-startup-id rofi -show drun -theme ~/.config/rofi/launcher.rasi
+bindsym $mod+Shift+d exec --no-startup-id ~/.config/polybar/scripts/powermenu.sh 
+bindsym $mod+o exec --no-startup-id obs
+bindsym $mod+m exec --no-startup-id ~/dotfiles/scripts/music.sh
+bindsym $mod+Shift+n exec --no-startup-id kitty --class "nvim" -e nvim
+bindsym $mod+Shift+Return exec --no-startup-id kitty --class "floatkitty"
+
+#gaps
+gaps inner 10
+gaps outer 10
+gaps bottom 10
+gaps left 10
+gaps right 10
+
+#borders
+default_border none
+
+
+
+#Workspaces
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -140,53 +185,4 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
-bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
-# resize window (you can also use the mouse for that)
-mode "resize" {
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
-}
-
-bindsym $mod+r mode "resize"
-bindsym $mod+Shift+s exec --no-startup-id flameshot gui
-bindsym $mod+b exec --no-startup-id brave
-bindsym $mod+n exec --no-startup-id ~/dotfiles/scripts/filemanager.sh
-bindsym $mod+Shift+f exec --no-startup-id rofi -show drun -theme ~/.config/rofi/launcher.rasi
-bindsym $mod+Shift+d exec --no-startup-id ~/.config/polybar/scripts/powermenu.sh 
-bindsym $mod+o exec --no-startup-id obs
-bindsym $mod+m exec --no-startup-id ~/dotfiles/scripts/music.sh
-bindsym $mod+Shift+n exec --no-startup-id kitty --class "nvim" -e nvim
-
-
-#gaps
-
-gaps inner 10
-gaps outer 10
-gaps bottom 10
-gaps left 10
-gaps right 10
-
-#borders
-
-default_border none
-
-#window
-title_align center
-for_window [class=".*"] border pixel 0

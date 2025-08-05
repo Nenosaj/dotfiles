@@ -8,6 +8,13 @@ if [ "$LIVE_TERMINALS" -eq 1 ]; then
     fastfetch
 fi
 
+if [[ $- == *i* ]] && [ "$WINDOWID" ]; then
+  class=$(xprop -id "$WINDOWID" 2>/dev/null | grep WM_CLASS | awk -F'"' '{print $4}')
+  if [[ "$class" == "floatkitty" ]]; then
+    fastfetch
+  fi
+fi
+
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
