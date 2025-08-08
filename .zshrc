@@ -1,5 +1,6 @@
 alias fetch='fastfetch'
 
+
 LIVE_TERMINALS=$(pgrep -u "$USER" -fx "kitty" | wc -l)
 
 if [ "$LIVE_TERMINALS" -eq 1 ]; then
@@ -16,8 +17,6 @@ fi
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
-#yazi
 
 
 export ZSH="$HOME/.oh-my-zsh"
