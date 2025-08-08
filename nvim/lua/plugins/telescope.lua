@@ -6,19 +6,10 @@ return {
     local telescope = require("telescope")
     local builtin = require("telescope.builtin")
 
-    telescope.setup({
-      pickers = {
-        find_files = {
-          hidden = true,
-        },
-      },
-      defaults = {
-        file_ignore_patterns = {}, -- Optional: make sure hidden files aren't excluded elsewhere
-      },
-    })
-
-    -- Keymaps
+      -- Keymaps
     vim.keymap.set("n", "<C-p>", builtin.find_files, {})
     vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
+    vim.keymap.set("n", "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", {})
+  
   end,
 }

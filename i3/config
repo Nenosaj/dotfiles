@@ -12,20 +12,12 @@ exec --no-startup-id dex --autostart --environment i3
 exec_always --no-startup-id xset +dpms dpms 0 300 300 
 exec_always --no-startup-id xss-lock --transfer-sleep-lock -- ~/dotfiles/scripts/lock.sh
 exec --no-startup-id nm-applet
-exec --no-startup-id brave
 exec_always --no-startup-id picom
 exec_always --no-startup-id ~/Scripts/resize-brave-dialog.sh
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id python ~/.config/autotiling/autotiling/autotiling.py
-exec --no-startup-id ~/dotfiles/scripts/music.sh
-exec --no-startup-id ~/dotfiles/scripts/filemanager.sh
-exec --no-startup-id ~/dotfiles/scripts/nvim-launcher.sh
-exec --no-startup-id kitty --class "nvim" -e nvim
-
 
 #for windows
-for_window [window_role="GtkFileChooserDialog"] floating disable
-
 for_window [class="floatkitty"] \
   floating enable, \
   resize set 500 300, \
@@ -83,6 +75,12 @@ bindsym $mod+f fullscreen toggle
 #bindsym $mod+w layout tabbed
 #bindsym $mod+e layout toggle split
 
+# Send current window to scratchpad ("minimize")
+bindsym $mod+Shift+Tab move scratchpad
+
+# Show or hide scratchpad window ("restore")
+bindsym $mod+Tab scratchpad show
+
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
@@ -120,25 +118,24 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 bindsym $mod+Shift+s exec --no-startup-id flameshot gui
 bindsym $mod+b exec --no-startup-id brave
-bindsym $mod+n exec --no-startup-id ~/dotfiles/scripts/filemanager.sh
+bindsym $mod+y exec --no-startup-id ~/dotfiles/scripts/filemanager.sh
 bindsym $mod+Shift+f exec --no-startup-id rofi -show drun -theme ~/.config/rofi/launcher.rasi
 bindsym $mod+Shift+d exec --no-startup-id ~/.config/polybar/scripts/powermenu.sh 
 bindsym $mod+o exec --no-startup-id obs
 bindsym $mod+m exec --no-startup-id ~/dotfiles/scripts/music.sh
-bindsym $mod+Shift+n exec --no-startup-id kitty --class "nvim" -e nvim
+bindsym $mod+n exec --no-startup-id kitty --class "nvim" -e nvim
 bindsym $mod+Shift+Return exec --no-startup-id kitty --class "floatkitty"
+
+bindsym $mod+F7 exec brightnessctl set 80%
 
 #gaps
 gaps inner 10
-gaps outer 10
-gaps bottom 10
+gaps outer 5
 gaps left 10
 gaps right 10
 
 #borders
 default_border none
-
-
 
 #Workspaces
 set $ws1 "1"
@@ -151,6 +148,8 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
+set $ws99 "99"
+
 
 #assign application to workspaces
 assign [class="Brave-browser"] $ws2
@@ -170,8 +169,9 @@ bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
+bindsym $mod+F1 workspaces number $ws99
 
-bindsym $mod+F9 exec ~/scripts/music_workspace.sh
+
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -184,5 +184,7 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
+bindsym $mod+Shift+F1 move container to workspace number $ws99
 
+popup_during_fullscreen smart
 
