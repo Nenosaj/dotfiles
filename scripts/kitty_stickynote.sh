@@ -13,7 +13,7 @@ kitty --class "$CLASS_NAME" &
 
 # Wait until the window appears
 while ! xdotool search --class "$CLASS_NAME" >/dev/null 2>&1; do
-    sleep 0.1
+	sleep 0.1
 done
 
 # Get the window ID
@@ -26,4 +26,3 @@ i3-msg "[id=$WIN_ID]" resize set $WIDTH $HEIGHT
 i3-msg "[id=$WIN_ID]" move position $X_POS $Y_POS
 i3-msg "[id=$WIN_ID]" sticky enable
 i3-msg workspace "$WORKSPACE"
-

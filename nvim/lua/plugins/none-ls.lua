@@ -7,10 +7,9 @@ return {
       sources = {
         null_ls.builtins.formatting.stylua,
         null_ls.builtins.completion.spell,
-        -- null_ls.builtins.diagnostics.eslint,
-        null_ls.builtins.diagnostics.shfmt,
-        null_ls.builtins.diagnostics.prettier,
-        null_ls.builtins.diagnostics.yamlfmt,
+        null_ls.builtins.formatting.shfmt,
+        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.formatting.yamlfmt,
       },
     })
     vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})

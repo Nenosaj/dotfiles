@@ -1,5 +1,7 @@
 alias fetch='fastfetch'
 
+export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
+
 
 LIVE_TERMINALS=$(pgrep -u "$USER" -fx "kitty" | wc -l)
 
