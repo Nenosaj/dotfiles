@@ -1,0 +1,8 @@
+keymap:
+  - name: "Arrow key remap"
+    remap:
+      Alt-h: left
+      Alt-j: down
+      Alt-k: up
+      Alt-l: right
+

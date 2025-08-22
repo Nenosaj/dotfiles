@@ -23,7 +23,11 @@ for_window [class="floatkitty"] \
   resize set 500 300, \
   move position 35 410
 
-for_window [class=".*"] border pixel 0
+for_window [class="^.*"] border pixel 0
+
+for_window [class="MATLAB R2024a"] floating enable
+for_window [class="sun-awt-X11-XFramePeer"] floating enable
+
 
 #audio
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -38,10 +42,10 @@ bindsym $mod+Return exec kitty
 bindsym $mod+Shift+q kill
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -62,17 +66,17 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+#bindsym $mod+h split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+#bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 #bindsym $mod+s layout stacking
-#bindsym $mod+w layout tabbed
+#bindsym $mod+t layout tabbed
 #bindsym $mod+e layout toggle split
 
 # Send current window to scratchpad ("minimize")
@@ -118,14 +122,13 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 bindsym $mod+Shift+s exec --no-startup-id flameshot gui
 bindsym $mod+b exec --no-startup-id brave
-bindsym $mod+y exec --no-startup-id ~/dotfiles/scripts/filemanager.sh
 bindsym $mod+Shift+f exec --no-startup-id rofi -show drun -theme ~/.config/rofi/launcher.rasi
 bindsym $mod+Shift+d exec --no-startup-id ~/.config/polybar/scripts/powermenu.sh 
 bindsym $mod+o exec --no-startup-id obs
 bindsym $mod+m exec --no-startup-id ~/dotfiles/scripts/music.sh
 bindsym $mod+n exec --no-startup-id kitty --class "nvim" -e nvim
 bindsym $mod+Shift+Return exec --no-startup-id kitty --class "floatkitty"
-
+bindsym $mod+y exec --no-startup-id thunar &
 bindsym $mod+F7 exec brightnessctl set 80%
 
 #gaps
@@ -152,10 +155,8 @@ set $ws99 "99"
 
 
 #assign application to workspaces
-assign [class="Brave-browser"] $ws2
-assign [class="nvim"] $ws3
-assign [class="yazi"] $ws4
-assign [class="obs"] $ws5
+assign [class="nvim"] $ws8
+assign [class="obs"] $ws9
 assign [class="musicterm"] $ws10
 
 # switch to workspace
@@ -169,7 +170,7 @@ bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
-bindsym $mod+F1 workspaces number $ws99
+bindsym $mod+F1 workspace number $ws99
 
 
 

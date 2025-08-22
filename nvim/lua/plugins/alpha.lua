@@ -79,10 +79,12 @@ return {
 
     -- Buttons
     dashboard.section.buttons.val = {
-      dashboard.button("n", "  > New file in directory", ":lua new_file_in_dir()<CR>"),
-      dashboard.button("d", "  > Browse directory", ":lua browse_directory()<CR>"),
+   --   dashboard.button("l", "  > Load last session", ":SessionManager load_last_session<CR>"),
+      dashboard.button("t", "  > Open notes", ":e ~/HDD/notes/<CR>"),
+      dashboard.button("u", "  > Update plugins", ":Lazy sync<CR>"),
+      dashboard.button("h", "  > Open HDD", ":e ~/HDD/<CR>"),
       dashboard.button("r", "  > Recent files", ":Telescope oldfiles<CR>"),
-      dashboard.button("f", "  > Find file", ":Telescope find_files<CR>"),
+      dashboard.button("o", "  > Open dotfiles", ":e ~/dotfiles/<CR>"),
       dashboard.button("s", "  > Settings", ":e $MYVIMRC<CR>"),
       dashboard.button("q", "  > Quit NVIM", ":qa<CR>"),
     }
