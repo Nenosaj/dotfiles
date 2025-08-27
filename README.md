@@ -1,9 +1,5 @@
 # 󰙄 Nenosaj's Dotfiles
 
-A curated collection of my personal configuration files for a tiling window manager setup with a focus on performance, aesthetics, and keyboard-driven workflows.
-
-> "probably finished" — famous last words 😎
-
 ---
 
 ##  Includes Configs for:
