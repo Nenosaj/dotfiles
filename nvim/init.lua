@@ -15,5 +15,14 @@ end
 vim.opt.rtp:prepend(lazypath)
 vim.opt.termguicolors = true
 
+
 require("nvim-options")
-require("lazy").setup("plugins")
+require("utils.floaterminal")
+
+require("lazy").setup({
+    require("plugins"),
+    require("lsp"),
+})
+ReloadCurrent = require("utils.reload").current
+
+vim.keymap.set("n", "<leader>rr", ReloadCurrent, {})

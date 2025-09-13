@@ -12,9 +12,4 @@ vim.keymap.set("i", "<C-v>", "<C-r>+", { noremap = true, silent = true })
 
 vim.opt.number = true
 
-vim.keymap.set("n", "<leader>rr", function()
-  vim.cmd("source $MYVIMRC")
-  package.loaded["nvim-options"] = nil
-  require("nvim-options")
-  print("🔁 Reloaded config")
-end, { desc = "Reload config" })
+

@@ -1,5 +1,6 @@
 return {
   "luisiacc/gruvbox-baby",
+  name = "gruvbox",
   branch = "main",
   priority = 1000, 
   config = function()

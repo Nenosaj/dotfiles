@@ -1,5 +1,6 @@
 return {
   "goolord/alpha-nvim",
+  name = "alpha",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
     local alpha = require("alpha")
@@ -80,12 +81,12 @@ return {
     -- Buttons
     dashboard.section.buttons.val = {
    --   dashboard.button("l", "  > Load last session", ":SessionManager load_last_session<CR>"),
-      dashboard.button("t", "  > Open notes", ":e ~/HDD/notes/<CR>"),
+      dashboard.button("t", "  > Open notes", ":cd ~/HDD/notes | e .<CR>"),
       dashboard.button("u", "  > Update plugins", ":Lazy sync<CR>"),
-      dashboard.button("h", "  > Open HDD", ":e ~/HDD/<CR>"),
+      dashboard.button("h", "  > Open HDD", ":cd ~/HDD | e .<CR>"),
       dashboard.button("r", "  > Recent files", ":Telescope oldfiles<CR>"),
-      dashboard.button("o", "  > Open dotfiles", ":e ~/dotfiles/<CR>"),
-      dashboard.button("s", "  > Settings", ":e $MYVIMRC<CR>"),
+      dashboard.button("o", "  > Open dotfiles", ":cd ~/dotfiles | e .<CR>"),
+      dashboard.button("s", "  > Settings", ":cd ~/.config/nvim | e $MYVIMRC<CR>"),
       dashboard.button("q", "  > Quit NVIM", ":qa<CR>"),
     }
 

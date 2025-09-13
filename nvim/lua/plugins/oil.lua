@@ -1,8 +1,10 @@
 return {
   "stevearc/oil.nvim",
+  name = "oil",
   config = function()
     require("oil").setup({
       default_file_explorer = true,
+      cwd_change = true,
       columns = {
         "icon",
       },
