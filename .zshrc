@@ -4,6 +4,8 @@ export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 
 alias mountphone="$HOME/dotfiles/scripts/mount_phone.sh" 
 alias unmountphone="$HOME/dotfiles/scripts/unmount_phone.sh"
+alias yt="$HOME/dotfiles/scripts/yt.sh"
+
 
 LIVE_TERMINALS=$(pgrep -u "$USER" -fx "kitty" | wc -l)
 
