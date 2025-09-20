@@ -12,26 +12,23 @@ local function create_floating_window(opts)
   local width = opts.width or math.floor(vim.o.columns * 0.8)
   local height = opts.height or math.floor(vim.o.lines * 0.8)
 
-  -- Calculate the position to center the window
   local col = math.floor((vim.o.columns - width) / 2)
   local row = math.floor((vim.o.lines - height) / 2)
 
-  -- Create a buffer
   local buf = nil
   if vim.api.nvim_buf_is_valid(opts.buf) then
     buf = opts.buf
   else
-    buf = vim.api.nvim_create_buf(false, true) -- No file, scratch buffer
+    buf = vim.api.nvim_create_buf(false, true)
   end
 
-  -- Define window configuration
   local win_config = {
     relative = "editor",
     width = width,
     height = height,
     col = col,
     row = row,
-    style = "minimal", -- No borders or extra UI elements
+    style = "minimal",
     border = "rounded",
   }
 
@@ -48,12 +45,12 @@ local toggle_terminal = function()
     if vim.bo[buf].buftype ~= "terminal" then
       local file_dir = vim.fn.expand("%:p:h")
       if file_dir == "" then
-        file_dir = vim.loop.cwd() -- fallback if no file is open
+        file_dir = vim.loop.cwd()
       end
 
       vim.api.nvim_buf_set_var(buf, "term_cwd", file_dir)
-      vim.cmd("lcd " .. file_dir) -- change local working directory
-      vim.cmd("terminal")      -- open terminal in that directory
+      vim.cmd("lcd " .. file_dir)
+      vim.cmd("terminal")
     end
   else
     vim.api.nvim_win_hide(state.floating.win)
@@ -71,7 +68,7 @@ local kill_terminal = function()
   end
 
   if vim.api.nvim_buf_is_valid(buf) then
-    vim.api.nvim_buf_delete(buf, { force = true }) 
+    vim.api.nvim_buf_delete(buf, { force = true })
   end
 
   state.floating.buf = -1
