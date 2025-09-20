@@ -21,11 +21,6 @@ return {
       capabilities = capabilities,
     })
 
-    lspconfig.matlab_ls.setup({
-      capabilities = capabilities,
-      filetypes = { "matlab" },
-    })
-
     lspconfig.texlab.setup({
       capabilities = capabilities,
       filetypes = { "tex", "bib", "plaintex", "TEX" },

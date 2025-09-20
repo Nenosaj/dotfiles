@@ -3,7 +3,7 @@ return {
   name = "mason-lspconfig",
   config = function()
     require("mason-lspconfig").setup({
-      ensure_installed = { "lua_ls", "matlab_ls", "texlab" },
+      ensure_installed = { "lua_ls", "texlab" },
     })
   end,
 }

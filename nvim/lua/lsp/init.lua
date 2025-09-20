@@ -4,4 +4,6 @@ return {
 	require("lsp.mason-lspconfig"),
 	require("lsp.lspconfig"),
 	require("lsp.telescope-lsp"),
+  require("lsp.gruvbox"),
+  require("lsp.none-ls"),
 }
